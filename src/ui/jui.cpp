@@ -5,7 +5,26 @@
 #include "unigen.hpp"
 
 
-void JUI::Jui::show_ui() {};
+void JUI::Jui::show_ui() {
+  if (this->hovered_star) {
+    ImGui::SetNextWindowPos(ImGui::GetMousePos(), ImGuiCond_Always,
+      ImVec2{0.0f, 1.0f});
+    
+      if (ImGui::Begin("hovered"), NULL,
+                       ImGuiWindowFlags_NoResize |
+                       ImGuiWindowFlags_AlwaysAutoResize |
+                       ImGuiWindowFlags_NoTitleBar 
+    ) {
+      ImGui::Text("Sector: %i %i", this->mouse_pos.x, this->mouse_pos.y);
+      ImGui::Text("Color: %u", this->hovered_star->Color);
+      ImGui::Text("Radius: %f", this->hovered_star->Radius);
+      ImGui::Text("Mass: %f", this->hovered_star->Mass);
+      ImGui::Text("Surface: %f", this->hovered_star->SurfaceTemperature);
+      ImGui::Text("Luminosity: %f", this->hovered_star->Luminosity);
+      ImGui::End();
+    }
+  }
+};
 
 void JUI::Jui::draw() {
   int num_sec_x = GetScreenWidth() / sec_size;
@@ -39,6 +58,23 @@ void JUI::Jui::draw() {
 };
 
 void JUI::Jui::update() {
+  this->mouse_pos = Point{
+    static_cast<int>(GetMouseX() / this-> sec_size + this -> cam.x),
+    static_cast<int>(GetMouseY() / this-> sec_size + this -> cam.y)
+  };
+
+  this->frand.seed = 
+    Jrand::PerfectlyHasThem(this->mouse_pos.x, this->mouse_pos.y
+  );
+
+  if (frand.randInteger(0, 20) == 1) {
+    this -> hovered_star = UGEN::GenerateStar(
+      this->mouse_pos.x, this->mouse_pos.y, this->star_system_rand
+    );
+  } else {
+    this->hovered_star = std::nullopt;
+  }
+
   const float KEYPAD_SENSE = this-> sec_size * 4.0f * GetFrameTime();
 
   if (IsKeyDown(KEY_S)) {

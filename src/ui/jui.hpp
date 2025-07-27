@@ -6,6 +6,7 @@
 #include "raylib.h"
 #include "fast_rand.hpp"
 #include "model.hpp"
+#include <optional>
 
 namespace JUI {
 
@@ -25,6 +26,8 @@ class Jui {
     Jrand::FastRand frand{};
     Jrand::FastRand star_system_rand{};
     Point cam{0, 0 };
+    Point mouse_pos{0, 0};
+    std::optional<GameModel::StarSystem> hovered_star{std::nullopt};
     Color star_to_color(GameModel::StarColor star_color);
 };
 
