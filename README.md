@@ -76,27 +76,26 @@ endif()
 
 ```mermaid
 flowchart TD
-    main["main()"] -->|InitWindow()| RL(raylib)
-    main -->|rlImGuiSetup()| ImGui
-    loop{{Game loop}}
-    main --> loop
-    loop -->|update()/draw()| Jui
-    Jui -->|deterministic star PRNG| Stars["star render calls"]
-    Stars --> RL
-    loop -->|rlImGuiBegin/End| ImGui
-    loop --> RL
-    loop -->|EndDrawing()| RL
+    main["main()"] -->|InitWindow()| rl["raylib"]
+    main -->|rlImGuiSetup()| imgui["ImGui"]
+    main --> loop{{"Game loop"}}
+    loop -->|update()/draw()| jui["Jui"]
+    jui -->|"star PRNG"| stars["Star draw calls"]
+    stars --> rl
+    loop -->|rlImGuiBegin/End| imgui
+    loop --> rl
+    loop -->|EndDrawing()| rl
 ```
 
 ### Deterministic randomness
 
 ```mermaid
 flowchart LR
-    S((sector x
-      sector y))
-    S -->|Cantor pairing| H(hash)
-    H -->|seed| PRNG[FastRand]
-    PRNG -->|randInteger(0,20)==1 ?| Star{draw star?}
+    sector["Sector (x,y)"] --> hash["Cantor pairing"]
+    hash --> prng["FastRand (seeded)"]
+    prng --> check{rand % 20 == 1}
+    check -->|Yes| star["Draw star"]
+    check -->|No| none[/Skip/]
 ```
 
 * **Cantor pairing function** `PerfectlyHasThem(x,y)` creates a unique 64-bit
