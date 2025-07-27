@@ -131,5 +131,6 @@ flowchart LR
 * **raylib** – cross-platform multimedia library ([wiki on CMake options](https://github.com/raysan5/raylib/wiki/CMake-Build-Options)).
 * **Dear ImGui** – immediate-mode GUI.
 * rlImGui – thin bridge between ImGui & raylib.
+* Jonkero on Youtube ([Video](https://www.youtube.com/watch?v=el7p-HC77g8))
 
 Released under the MIT/Zlib licenses of the respective components. 
