@@ -26,6 +26,7 @@ int main (int argc, char *argv[]) {
     SetTargetFPS(75);
 
     init_imgui();
+    JUI::Jui ui{};
 
     //loop 
     bool should_run{true};
@@ -38,6 +39,10 @@ int main (int argc, char *argv[]) {
         BeginDrawing();
         rlImGuiBegin();
         ClearBackground(JUI::to_ray_color(Jcolor::Crust));
+
+        ui.update();
+        ui.draw();
+        ui.show_ui();
 
         rlImGuiEnd();
         EndDrawing();
