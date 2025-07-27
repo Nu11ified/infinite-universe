@@ -20,11 +20,11 @@ void JUI::Jui::draw() {
       GetScreenHeight(), line_color);
     for (size_t y = 0; y < num_sec_y; y++) {
 
-      DrawCircle((x * sec_size) + radius, y * sec_size + radius,
-        radius, to_ray_color(Jcolor::Slateblue));
-
       DrawLine(0, y * sec_size, GetScreenWidth(), y * sec_size,
         line_color);
+
+      DrawCircle((x * sec_size) + radius, y * sec_size + radius,
+        radius, to_ray_color(Jcolor::Slateblue));
     }
   }
 };
