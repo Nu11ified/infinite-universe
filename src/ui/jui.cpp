@@ -2,6 +2,7 @@
 #include "color.hpp"
 #include "raylib.h"
 #include "imgui.h"
+#include "unigen.hpp"
 
 
 void JUI::Jui::show_ui() {};
@@ -27,11 +28,11 @@ void JUI::Jui::draw() {
       this->frand.seed = Jrand::PerfectlyHasThem(global_sector.x, global_sector.y);
       
       if (frand.randInteger(0, 20) == 1) {
-        // draw at screen-relative coordinates so stars remain visible while scrolling
-        int screen_x = static_cast<int>(x * sec_size + radius);
-        int screen_y = static_cast<int>(y * sec_size + radius);
-        DrawCircle(screen_x, screen_y, static_cast<int>(radius),
-                   to_ray_color(Jcolor::Slateblue));
+        auto star = UGEN::GenerateStar(
+          global_sector.x, global_sector.y, this->star_system_rand);
+
+        DrawCircle((x * sec_size) + radius, y * sec_size + radius,
+          (star.Radius / 2100.0) * radius, star_to_color(star.Color));
       }
     }
   }
