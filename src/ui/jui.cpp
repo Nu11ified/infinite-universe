@@ -68,3 +68,21 @@ ImVec4 JUI::to_imvec4(const Jcolor::JColor c) {
       static_cast<float>(c.b) / 255.0f,
       static_cast<float>(c.a) / 255.0f};
 }
+
+Color JUI::Jui::star_to_color(GameModel::StarColor star_color) {
+  switch (star_color) {
+    case GameModel::White:
+      return to_ray_color(Jcolor::Cornsilk);
+    case GameModel::Blue:
+      return to_ray_color(Jcolor::Lightblue);
+    case GameModel::Red:
+      return to_ray_color(Jcolor::Violetred);
+    case GameModel::Yellow:
+      return to_ray_color(Jcolor::Greenyell);
+    case GameModel::Orange:
+      return to_ray_color(Jcolor::Orange);
+    case GameModel::Gold: 
+      return to_ray_color(Jcolor::Burlywood);
+  }
+  return to_ray_color(Jcolor::Purp);
+}

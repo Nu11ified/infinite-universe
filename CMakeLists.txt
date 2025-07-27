@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_executable(${PROJECT_NAME} 
     src/main.cpp 
     src/ui/jui.cpp
-    #src/unigen/unigen.cpp
+    src/unigen/unigen.cpp
     src/unigen/fast_rand.cpp
     vendored/imgui/imgui.cpp
     vendored/imgui/imgui_draw.cpp

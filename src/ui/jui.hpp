@@ -5,6 +5,7 @@
 #include "imgui.h"
 #include "raylib.h"
 #include "fast_rand.hpp"
+#include "model.hpp"
 
 namespace JUI {
 
@@ -22,7 +23,9 @@ class Jui {
   private:
     int sec_size{32};
     Jrand::FastRand frand{};
+    Jrand::FastRand star_system_rand{};
     Point cam{0, 0 };
+    Color star_to_color(GameModel::StarColor star_color);
 };
 
 Color to_ray_color(Jcolor::JColor col);
