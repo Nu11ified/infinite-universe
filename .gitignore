@@ -1,0 +1,42 @@
+# Build output
+/build/
+/build-*/
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# Compiled object & binary files
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.lib
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Log & temp files
+*.log
+*.tmp
+
+# Editor/IDE folders
+.vscode/
+.idea/
+*.code-workspace
+
+# CLion / JetBrains
+cmake-build-*/
+
+# Xcode
+*.xcworkspace/
+*.xcodeproj/ 
+
+.cache/
