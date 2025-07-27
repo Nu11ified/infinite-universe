@@ -28,13 +28,8 @@ int main (int argc, char *argv[]) {
     init_imgui();
     JUI::Jui ui{};
 
-    //loop 
-    bool should_run{true};
-
-    while (should_run) {
-        if (IsKeyPressed(KEY_CAPS_LOCK)) {
-            should_run = false;
-        }
+    // Main loop: exit when user closes the window or presses ESC (raylib default)
+    while (!WindowShouldClose()) {
 
         BeginDrawing();
         rlImGuiBegin();

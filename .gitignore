@@ -41,4 +41,7 @@ cmake-build-*/
 *.xcworkspace/
 *.xcodeproj/ 
 
+# Ignore ImGui runtime settings
+imgui.ini
+
 .cache/
