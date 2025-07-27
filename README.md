@@ -3,11 +3,11 @@
 A minimal C++/raylib/ImGui sandbox that renders an **infinite grid of sectors** and procedurally places deterministic "stars" inside them.  The camera can be panned with **W A S D** and every sector you visit is generated on-the-fly but always the same thanks to a fast hash-based PRNG.
 
 <p align="center">
-  <img src="img/rndsc.png" width="70%" alt="Screenshot – normal view"/>
+  <img src="imgs/rndsc.png" width="70%" alt="Screenshot – normal view"/>
 </p>
 
 <p align="center">
-  <img src="img/hoveredsc.png" width="70%" alt="Screenshot – star hovered"/>
+  <img src="imgs/hoveredsc.png" width="70%" alt="Screenshot – star hovered"/>
 </p>
 
 ---
