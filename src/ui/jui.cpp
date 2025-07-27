@@ -6,8 +6,6 @@
 
 void JUI::Jui::show_ui() {};
 
-void JUI::Jui::update() {};
-
 void JUI::Jui::draw() {
   int num_sec_x = GetScreenWidth() / sec_size;
   int num_sec_y = GetScreenHeight() / sec_size;
@@ -16,12 +14,12 @@ void JUI::Jui::draw() {
 
   for (size_t x = 0; x < num_sec_x; x++) {
     auto line_color = to_ray_color(Jcolor::Cornsilk);
-    DrawLine(x * sec_size, 0, x * sec_size, 
-      GetScreenHeight(), line_color);
+    //DrawLine(x * sec_size, 0, x * sec_size, 
+    //  GetScreenHeight(), line_color);
     for (size_t y = 0; y < num_sec_y; y++) {
 
-      DrawLine(0, y * sec_size, GetScreenWidth(), y * sec_size,
-        line_color);
+      //DrawLine(0, y * sec_size, GetScreenWidth(), y * sec_size,
+      //  line_color);
       
       Point global_sector = Point{static_cast<int>(cam.x + x),
                                   static_cast<int>(cam.y + y)};
@@ -34,6 +32,26 @@ void JUI::Jui::draw() {
           radius, to_ray_color(Jcolor::Slateblue));
       }
     }
+  }
+};
+
+void JUI::Jui::update() {
+  const float KEYPAD_SENSE = this-> sec_size * 4.0f * GetFrameTime();
+
+  if (IsKeyDown(KEY_S)) {
+    this -> cam.y += KEYPAD_SENSE;
+  }
+
+  if (IsKeyDown(KEY_W)) {
+    this -> cam.y -= KEYPAD_SENSE;
+  }
+
+  if (IsKeyDown(KEY_A)) {
+    this -> cam.x -= KEYPAD_SENSE;
+  }
+
+  if (IsKeyDown(KEY_D)) {
+    this -> cam.x += KEYPAD_SENSE;
   }
 };
 
