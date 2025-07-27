@@ -9,7 +9,7 @@ add_executable(${PROJECT_NAME}
     src/main.cpp 
     src/ui/jui.cpp
     #src/unigen/unigen.cpp
-    #src/unigen/fast_rand.cpp
+    src/unigen/fast_rand.cpp
     vendored/imgui/imgui.cpp
     vendored/imgui/imgui_draw.cpp
     vendored/imgui/imgui_demo.cpp
@@ -18,8 +18,19 @@ add_executable(${PROJECT_NAME}
     vendored/imgui/rlImGui.cpp
 )
 
-find_package(raylib REQUIRED)   # supplied by Homebrew
-target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
+# --- raylib linking -----------------------------------------------------------
+# Linux: link against the vendored static library shipped in the repo.
+# macOS / Windows (and any other OS): use a system-installed raylib package.
+
+if(UNIX AND NOT APPLE)
+    # On Linux we keep the vendored static build of raylib
+    target_link_libraries(${PROJECT_NAME} PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/vendored/raylib/libraylib.a)
+else()
+    # macOS (Homebrew), Windows (vcpkg/MSYS2), etc.
+    find_package(raylib REQUIRED)
+    target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
+endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE 
     src

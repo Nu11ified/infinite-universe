@@ -4,8 +4,14 @@
 #include "color.hpp"
 #include "imgui.h"
 #include "raylib.h"
+#include "fast_rand.hpp"
 
 namespace JUI {
+
+struct Point {
+  int x;
+  int y;
+};
 
 class Jui {
   public: 
@@ -15,6 +21,8 @@ class Jui {
 
   private:
     int sec_size{32};
+    Jrand::FastRand frand{};
+    Point cam{0, 0 };
 };
 
 Color to_ray_color(Jcolor::JColor col);

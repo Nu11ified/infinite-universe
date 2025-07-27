@@ -22,9 +22,17 @@ void JUI::Jui::draw() {
 
       DrawLine(0, y * sec_size, GetScreenWidth(), y * sec_size,
         line_color);
+      
+      Point global_sector = Point{static_cast<int>(cam.x + x),
+                                  static_cast<int>(cam.y + y)};
 
-      DrawCircle((x * sec_size) + radius, y * sec_size + radius,
-        radius, to_ray_color(Jcolor::Slateblue));
+      this->frand.seed = Jrand::PerfectlyHasThem(global_sector.x, global_sector.y);
+      
+      if (frand.randInteger(0, 20) == 1) {
+        DrawCircle(global_sector.x * sec_size + radius,
+          global_sector.y * sec_size + radius,
+          radius, to_ray_color(Jcolor::Slateblue));
+      }
     }
   }
 };

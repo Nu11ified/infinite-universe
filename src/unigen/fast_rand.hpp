@@ -14,6 +14,8 @@ struct FastRand {
     
 };
 
+//Cantor hashing algorithm
+uint64_t PerfectlyHasThem(uint32_t a, uint32_t b);
 }
 
 #endif // FASTRAND
