@@ -23,7 +23,27 @@ void init_imgui() {
 
 int main (int argc, char *argv[]) {
     InitWindow(900, 800, "uni_demo");
-    SetTargetFPS(60);
+    SetTargetFPS(75);
+
+    init_imgui();
+
+    //loop 
+    bool should_run{true};
+
+    while (should_run) {
+        if (IsKeyPressed(KEY_CAPS_LOCK)) {
+            should_run = false;
+        }
+
+        BeginDrawing();
+        rlImGuiBegin();
+        ClearBackground(JUI::to_ray_color(Jcolor::Crust));
+
+        rlImGuiEnd();
+        EndDrawing();
+    }
+
+
     rlImGuiShutdown();
     CloseWindow();
     return 0;
