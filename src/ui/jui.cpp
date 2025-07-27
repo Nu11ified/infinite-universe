@@ -27,9 +27,11 @@ void JUI::Jui::draw() {
       this->frand.seed = Jrand::PerfectlyHasThem(global_sector.x, global_sector.y);
       
       if (frand.randInteger(0, 20) == 1) {
-        DrawCircle(global_sector.x * sec_size + radius,
-          global_sector.y * sec_size + radius,
-          radius, to_ray_color(Jcolor::Slateblue));
+        // draw at screen-relative coordinates so stars remain visible while scrolling
+        int screen_x = static_cast<int>(x * sec_size + radius);
+        int screen_y = static_cast<int>(y * sec_size + radius);
+        DrawCircle(screen_x, screen_y, static_cast<int>(radius),
+                   to_ray_color(Jcolor::Slateblue));
       }
     }
   }
